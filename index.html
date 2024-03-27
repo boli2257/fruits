@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits</title>
+</head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container:before {
+            content: '';
+            background-image: url(img/hatterkep.jpg);
+            width: 100vw;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position:  center;
+            opacity: 0.2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .container {
+            display: grid;
+            place-content: center;
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+<body>
+    <div class="container" id="container">
+        <h1>Déli gyümölcsök</h1>
+        <label for="gyum">Neked melyik a kedvenced?</label>
+        <select id="gyumolcsok" onchange="SelectedFruit(this)">
+            <option value="x">válassz...</option>
+        </select>
+        <div id="container2"></div>
+    </div>
+
+
+    <script src="data_fruits.js"></script>
+    <script>
+        fruits.forEach(element => {
+            document.getElementById("gyumolcsok").innerHTML += `<option value="${element.id}">${element.name}</option>`
+        });
+
+        function SelectedFruit(domObj){
+            document.getElementById("container2").innerHTML = ""
+        fruits.forEach(obj => {
+            console.log(obj.id)
+            console.log(domObj)
+            if(obj.id == domObj.value){
+                document.getElementById("container2").innerHTML += 
+                `<img src="img/${obj.image}"> <h2>${obj.name}</h2> <p>${obj.descr}</p>`
+            }
+        })
+        }
+    </script>
+</body>
+</html>
